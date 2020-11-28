@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Loader from './components/Loader';
 import Map from './components/Map'
+import filterEvents from './utils/FilterEvents';
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -14,7 +15,9 @@ function App() {
       const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events');
       const { events } = await res.json();
 
-      setEventData(events);
+      const filteredEvents = await filterEvents(events);
+
+      setEventData(filteredEvents);
       setLoading(false);
     }
 
@@ -25,10 +28,10 @@ function App() {
     <div>
       <Header />
       {
-        !loading ?
-          <Map eventData={eventData} />
-          :
+        loading ?
           <Loader />
+          :
+          <Map eventData={eventData} />
       }
     </div>
   );
