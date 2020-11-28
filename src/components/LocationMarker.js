@@ -5,8 +5,8 @@ import weatherWindy from '@iconify/icons-mdi/weather-windy';
 
 const LocationMarker = ({ type, onClick }) => {
     let icons = {
-        8: pineTreeFire,
-        10: weatherWindy
+        "Wildfires": pineTreeFire,
+        "Severe Storms": weatherWindy
     }
 
     return (
