@@ -12,11 +12,11 @@ const Map = ({ eventData, center, zoom }) => {
             return <LocationMarker
                 lat={ev.geometries[0].coordinates[1]}
                 lng={ev.geometries[0].coordinates[0]}
+                type={ev.categories[0].id}
                 onClick={() => setLocationInfo({ title: ev.title, date: ev.geometries[0].date, sources: ev.sources })}
             />
 
         }
-
         return null
     })
 
