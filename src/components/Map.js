@@ -6,18 +6,13 @@ import LocationMarker from './LocationMarker'
 const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState(null)
 
-
     const markers = eventData.map(ev => {
-        if (ev.categories[0].id === 8) {
-            return <LocationMarker
-                lat={ev.geometries[0].coordinates[1]}
-                lng={ev.geometries[0].coordinates[0]}
-                type={ev.categories[0].id}
-                onClick={() => setLocationInfo({ title: ev.title, date: ev.geometries[0].date, sources: ev.sources })}
-            />
-
-        }
-        return null
+        return <LocationMarker
+            lat={ev.lat}
+            lng={ev.lng}
+            type={ev.type}
+            onClick={() => setLocationInfo({ title: ev.title, date: ev.date, sources: ev.sources })}
+        />
     })
 
     return (
